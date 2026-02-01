@@ -282,6 +282,7 @@ body{
   position:absolute; inset:0;
   background: rgba(16,183,166,.70);
   border-radius: 8px;
+  display:none;
 }
 
 /* TEACHERS */
