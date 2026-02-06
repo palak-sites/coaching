@@ -47,17 +47,25 @@ leadForm.addEventListener("submit", (e) => {
   const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
   window.open(url, "_blank");
 });
-// Instagram map fix (remove iframe to avoid error)
-(function () {
-  const isInstagram = /Instagram/i.test(navigator.userAgent);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ua = navigator.userAgent || "";
+  const isInApp = /Instagram|FBAN|FBAV/i.test(ua); // IG + Facebook in-app
+
   const mapFrame = document.getElementById("mapFrame");
   const mapToolbar = document.getElementById("mapToolbar");
 
   if (!mapFrame || !mapToolbar) return;
 
-  if (isInstagram) {
-    mapFrame.remove();                 // ✅ no iframe => no error
-    mapToolbar.style.display = "block"; // ✅ button only
+  if (isInApp) {
+    // In-app browsers: iframe ko load hi mat karo
+    mapFrame.remove();
+    mapToolbar.style.display = "block";
+  } else {
+    // Normal browsers: map load karo
+    const src = mapFrame.getAttribute("data-src");
+    if (src) mapFrame.setAttribute("src", src);
+    mapToolbar.style.display = "none";
   }
-})();
+});
 
