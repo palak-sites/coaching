@@ -56,7 +56,6 @@ if (leadForm) {
   });
 }
 
-// ✅ Instagram/Facebook in-app map fix (data-src -> src)
 document.addEventListener("DOMContentLoaded", () => {
   const ua = navigator.userAgent || "";
   const isInApp = /Instagram|FBAN|FBAV/i.test(ua);
@@ -64,14 +63,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const mapFrame = document.getElementById("mapFrame");
   const mapToolbar = document.getElementById("mapToolbar");
 
-  if (!mapFrame || !mapToolbar) return;
+  if (!mapToolbar) return;
 
   if (isInApp) {
-    mapFrame.remove();                  // no iframe => no error
-    mapToolbar.style.display = "block"; // show button
+    // ✅ Instagram/Facebook in-app: iframe hide, button show
+    if (mapFrame) mapFrame.style.display = "none";
+    mapToolbar.style.display = "block";
   } else {
-    const src = mapFrame.getAttribute("data-src");
-    if (src) mapFrame.setAttribute("src", src); // load map
+    // ✅ Normal browser: iframe load from data-src
+    if (mapFrame) {
+      const src = mapFrame.getAttribute("data-src");
+      if (src) mapFrame.setAttribute("src", src);
+      mapFrame.style.display = "block";
+    }
     mapToolbar.style.display = "none";
   }
 });
+
