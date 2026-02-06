@@ -768,4 +768,15 @@ input:focus, select:focus, textarea:focus{
   border-bottom: 1px solid #eee;
   background: linear-gradient(180deg, #fff, rgba(16,183,166,.06));
 }
+.map-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.map-toolbar{
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  background: linear-gradient(180deg, #fff, rgba(16,183,166,.06));
+}
+
 
