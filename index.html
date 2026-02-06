@@ -346,7 +346,7 @@
 
       <!-- RIGHT: Map (optional) -->
 <div class="map-card">
-  <!-- Instagram button (only shows in Instagram) -->
+  <!-- Instagram fallback button -->
   <div class="map-toolbar" id="mapToolbar" style="display:none;">
     <a class="btn btn-teal btn-full"
        href="https://www.google.com/maps/search/?api=1&query=Your%20Coaching%20Address%2C%20Jaipur"
@@ -355,15 +355,16 @@
     </a>
   </div>
 
-  <!-- Map iframe (removed on Instagram to avoid error) -->
+  <!-- IMPORTANT: src removed, only data-src -->
   <iframe
     id="mapFrame"
     title="Google Map"
-    src="https://www.google.com/maps?q=Jaipur%20Rajasthan&output=embed"
+    data-src="https://www.google.com/maps?q=Jaipur%20Rajasthan&output=embed"
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 </div>
+
 
 
     </div>
