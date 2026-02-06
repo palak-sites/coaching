@@ -47,3 +47,17 @@ leadForm.addEventListener("submit", (e) => {
   const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
   window.open(url, "_blank");
 });
+// Instagram map fix (remove iframe to avoid error)
+(function () {
+  const isInstagram = /Instagram/i.test(navigator.userAgent);
+  const mapFrame = document.getElementById("mapFrame");
+  const mapToolbar = document.getElementById("mapToolbar");
+
+  if (!mapFrame || !mapToolbar) return;
+
+  if (isInstagram) {
+    mapFrame.remove();                 // ✅ no iframe => no error
+    mapToolbar.style.display = "block"; // ✅ button only
+  }
+})();
+
